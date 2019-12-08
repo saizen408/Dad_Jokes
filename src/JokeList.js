@@ -19,7 +19,14 @@ class JokeList extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    if (this.state.jokes.length === 0) this.getJokes();
+    if (this.state.jokes.length === 0) {
+      this.setState(
+        () => ({
+          loading: true
+        }),
+        () => this.getJokes()
+      );
+    }
   }
 
   async getJokes() {
